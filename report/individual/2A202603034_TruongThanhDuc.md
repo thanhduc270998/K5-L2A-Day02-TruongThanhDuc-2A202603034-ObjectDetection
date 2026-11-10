@@ -100,7 +100,7 @@ Trả lời bốn câu hỏi cuối notebook:
 |---|---|---|
 | Hoàn thành và định dạng YOLO (10) | `check_yolo_labels.py`: "ĐẠT cấu trúc: 50/50 file nhãn hợp lệ". | 50 file cùng basename, 5 cột, normalized, bốn class ID đúng |
 | Đầy đủ vật thể (20) | Recall gold 0.2303; gán cả xe bị che và xe bị cắt rìa. | Còn 203 FN. Một số ảnh khớp ít như `drive_030` (13/20), `drive_027` (17/31), chưa rà nguyên nhân. |
-| Độ bám sát và hình học box (20) | mean IoU of matches 0.8462 (≥ 0.70, gần mức "xuất sắc" 0.80). | Đạt theo số liệu. Có box xe nhỏ ở xa lệch 2–4 px. |
+| Độ bám sát và hình học box (20) | mean IoU of matches 0.8462 (≥ 0.70, cao hơn mức 0.80 do BTC đưa ra). | Đạt theo số liệu. Có box xe nhỏ ở xa lệch 2–4 px. |
 | Mini guideline và quyết định mơ hồ (10) | `GUIDELINE_MINI.md` có định nghĩa lớp, quy tắc box và 3 ca mơ hồ có lý do. | Đủ yêu cầu. |
 | Gold-set annotation QC (15) | `annotation_evaluation.json`: F1 0.5825, mean IoU 0.8462. | **Vừa đủ**:  0.50 < F1 < 0.80 và chưa có vòng rework. |
 | Pipeline YOLO và phân tích (10) | Colab chạy xong 50 epoch; không dùng eval để train; có metrics, ảnh eval và phân tích lỗi (mục 5). | Có kết quả. Cần train lại sau khi sửa class ID để số liệu theo lớp có ý nghĩa. |
