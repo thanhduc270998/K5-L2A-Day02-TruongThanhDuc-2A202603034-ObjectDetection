@@ -40,25 +40,45 @@ Dẫn tới `outputs/annotation_evaluation.json` trong repo. Nếu rework, ghi �
 
 ## 5. Kết quả YOLO
 
-- Runtime, GPU/CPU, phiên bản Ultralytics và Torch:
+- Runtime, GPU/CPU, phiên bản Ultralytics và Torch: 
+Runtime: Google Colab, Python 3.13.16.
+GPU: NVIDIA Tesla T4, CUDA 13.0.
+Ultralytics: 8.4.208.
+PyTorch: 2.14.1+cu130.
+Mô hình sử dụng: YOLO26n (yolo26n.pt).
 - Các tham số thay đổi so với notebook nếu có và lý do:
+Sử dụng mô hình YOLO26n pretrained để phù hợp với quy mô dữ liệu nhỏ.
+Epochs: 50.
+Image size: 640.
+Batch size: -1 (tự động lựa chọn theo bộ nhớ GPU).
+Seed: 20260909.
+Sử dụng GPU để tăng tốc quá trình huấn luyện.
+
 - Đường dẫn best checkpoint trong phiên chạy:
+/content/Day2-Lab/outputs/yolo26_runs/vehicle_annotation/weights/best.pt
 
 | Chỉ số trên 10 ảnh eval | Giá trị |
 |---|---:|
-| Precision | |
-| Recall | |
-| mAP50 | |
-| mAP50–95 | |
+| Precision | 0.4105 |
+| Recall | 0.2303 |
+| mAP50 | 0.2723 |
+| mAP50–95 | 0.2017 |
 
 Đặt cả 2 folder `assets/eval_predictions/` và `assets/yolo26_runs/` (giải nén từ `day2_colab_outputs.zip`) cạnh báo cáo và dẫn link tương đối. Không chỉ ghi số; chỉ ra ít nhất một ảnh và vật thể cụ thể.
 
 Trả lời bốn câu hỏi cuối notebook:
 
 1. Lớp nào recall thấp nhất? Ảnh nào minh họa?
+Lớp bus có Recall thấp nhất. Ảnh minh hoạt: drive_052.jpg, drive_053.jpg, drive_056.jpg, drive_058.jpg, drive_060.jpg.
 2. Nếu mAP50 cao nhưng mAP50–95 thấp, cần kiểm điều gì trên box?
+Kiểm tra Bounding Box có bị lệch, quá rộng, quá hẹp hoặc chưa bao sát vật thể không.
 3. Lỗi class nào có thể liên quan guideline? Dữ kiện nào hỗ trợ nhận xét?
+Các lớp truck, bus, van có thể bị nhầm lẫn do hình dáng tương đồng.
+Ảnh cần kiểm tra: drive_053.jpg, drive_059.jpg, drive_060.jpg
 4. Vì sao không dùng 10 ảnh eval để train? Vai trò validation của chúng trong notebook là gì?
+Không dùng 10 ảnh Eval để cập nhật trọng số nhằm tránh rò rỉ dữ liệu đánh giá.
+
+Trong notebook, 10 ảnh Eval được dùng làm validation để theo dõi hiệu suất và chọn checkpoint tốt nhất
 
 ## 6. Khó khăn và cách xử lý
 
