@@ -96,6 +96,21 @@ Trả lời bốn câu hỏi cuối notebook:
 ## 7. Tự đánh giá theo rubric
 
 Đối chiếu [RUBRIC.md](../../RUBRIC.md): phần nào đã có kết quả, phần nào còn thiếu hoặc chưa kiểm được. Không tự nhận hoàn thành bước chưa chạy.
+| Tiêu chí (điểm) | Bằng chứng hiện có | Đánh giá |
+|---|---|---|
+| Hoàn thành và định dạng YOLO (10) | `check_yolo_labels.py`: "ĐẠT cấu trúc: 50/50 file nhãn hợp lệ". | 50 file cùng basename, 5 cột, normalized, bốn class ID đúng |
+| Đầy đủ vật thể (20) | Recall gold 0.2303; gán cả xe bị che và xe bị cắt rìa. | Còn 203 FN. Một số ảnh khớp ít như `drive_030` (13/20), `drive_027` (17/31), chưa rà nguyên nhân. |
+| Độ bám sát và hình học box (20) | mean IoU of matches 0.8462 (≥ 0.70, gần mức "xuất sắc" 0.80). | Đạt theo số liệu. Có box xe nhỏ ở xa lệch 2–4 px. |
+| Mini guideline và quyết định mơ hồ (10) | `GUIDELINE_MINI.md` có định nghĩa lớp, quy tắc box và 3 ca mơ hồ có lý do. | Đủ yêu cầu. |
+| Gold-set annotation QC (15) | `annotation_evaluation.json`: F1 0.5825, mean IoU 0.8462. | **Vừa đủ**:  0.50 < F1 < 0.80 và chưa có vòng rework. |
+| Pipeline YOLO và phân tích (10) | Colab chạy xong 50 epoch; không dùng eval để train; có metrics, ảnh eval và phân tích lỗi (mục 5). | Có kết quả. Cần train lại sau khi sửa class ID để số liệu theo lớp có ý nghĩa. |
+
+**Điều kiện bắt buộc:**
+- Có đủ 50 file nhãn.
+- Có gold-set evaluation.
+- Không dùng eval để train.
+- Không thay đổi gold labels.
+- Đã chạy qua `check_yolo_labels.py` (50/50 hợp lệ)
 
 ## 8. Công cụ AI và tài liệu tham khảo
 
